@@ -108,7 +108,7 @@ public class ProGen : MonoBehaviour
                     for (int column = 0; column < initialColumns; column++)
                     {
                         var roomPosition = new Vector3(row * cellUnitSize, floorCount, column * cellUnitSize);
-                        rooms[row, column] = new Room(roomPosition, includeRoof ? (floorCount == floors.Length - 1) : false);
+                        rooms[row, column] = new Room(roomPosition, includeRoof ? ((floorCount == numberOfFloors - 1) && (column == 0 || column == initialColumns - 1)) : false);
 
                         rooms[row, column].Walls[0] = new Wall(roomPosition, Quaternion.Euler(0, 0, 0));
                         rooms[row, column].Walls[1] = new Wall(roomPosition, Quaternion.Euler(0, 90, 0));
@@ -135,7 +135,7 @@ public class ProGen : MonoBehaviour
                     {
                         var roomPosition = new Vector3(row * cellUnitSize, floorCount, column * cellUnitSize);
                         int col_index = column - (floorCount - numberOfFloors) - 1;
-                        rooms[row, col_index] = new Room(roomPosition, true);
+                        rooms[row, col_index] = new Room(roomPosition, includeRoof ? (initialColumns % 2 == 0 || floorCount != floors.Length - 1 || floors.Length == 3) : false);
 
                         rooms[row, col_index].Walls[0] = new Wall(roomPosition, Quaternion.Euler(0, 0, 0));
                         rooms[row, col_index].Walls[1] = new Wall(roomPosition, Quaternion.Euler(0, 90, 0));
@@ -161,6 +161,11 @@ public class ProGen : MonoBehaviour
                     {
                         Room room = floor.rooms[row, column];
                         room.FloorNumber = floor.FloorNumber;
+                        int roof_flag = 0;
+                        if (column == 0)
+                            roof_flag = 1;
+                        else if (column == floor.rooms.GetLength(1) - 1)
+                            roof_flag = 2;
                         GameObject roomGo = new GameObject($"Room_{row}_{column}");
                         rooms.Add(roomGo);
                         roomGo.transform.parent = transform;
@@ -181,7 +186,7 @@ public class ProGen : MonoBehaviour
                                     RoomPlacement(windowPrefabs[0], room, roomGo);
                             }
                             else
-                                RoomPlacement(wallPrefab, room, roomGo);
+                                RoomPlacement(wallPrefab, room, roomGo, roof_flag);
                         }
                     }
                 }
@@ -219,7 +224,7 @@ public class ProGen : MonoBehaviour
 
         if (room.HasRoof)
         {
-            if (randomizeRoofSelection && room.FloorNumber >= numberOfFloors)
+            if (randomizeRoofSelection && room.FloorNumber >= numberOfFloors - 1)
             {
                 if (roof_flag == 1)
                     SpawnPrefab(roofPrefabs[roofIndex], roomGo.transform, room.Walls[0].Position, room.Walls[0].Rotation);
