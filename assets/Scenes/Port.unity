@@ -150,6 +150,69 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &217658089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 217658091}
+  - component: {fileID: 217658090}
+  m_Layer: 0
+  m_Name: CargoGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &217658090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217658089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c206393b2033ef4b957e6180b76160b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containersList:
+  - {fileID: 100000, guid: 451664e297f8c4d2396319372d5eacfc, type: 3}
+  - {fileID: 100000, guid: 28c36fb62fcfdf74e811c777265015d1, type: 3}
+  - {fileID: 100004, guid: 3c21163689a1384419e2b52482a0fe63, type: 3}
+  - {fileID: 100004, guid: 9d95bd2d13770db4a868c654bf1acc2d, type: 3}
+  tubesList:
+  - {fileID: 100000, guid: 5595ad9599549414b957a924ff65b27f, type: 3}
+  - {fileID: 100000, guid: a5c1cc5f471b914449d2e3ea62b41930, type: 3}
+  - {fileID: 100000, guid: 94fb01e02906f2e4c88d55b30d261f6f, type: 3}
+  - {fileID: 100000, guid: 95f6a3364dfa15d43a56bb1e5913f706, type: 3}
+  - {fileID: 8462307127447850598, guid: 065ea7c4854dc6e4881f64d015135188, type: 3}
+  - {fileID: 100016, guid: 8417396e755ab5244a0c8d190b8737cd, type: 3}
+  - {fileID: 100000, guid: 77863dd382141614182d3b21e5c0fcbc, type: 3}
+  - {fileID: 100014, guid: f728003af152f1b449d7fee4a7b8a84e, type: 3}
+  - {fileID: 100000, guid: a34d40157015aab4f93d7890a6420388, type: 3}
+  height: 5
+  breakHeight: 7
+  tileX: 30
+  tileZ: 35
+  roadGen: {fileID: 1953053690}
+--- !u!4 &217658091
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217658089}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &362640194
 GameObject:
   m_ObjectHideFlags: 0

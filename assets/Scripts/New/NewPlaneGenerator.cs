@@ -27,7 +27,8 @@ public class NewPlaneGenerator : MonoBehaviour
         gameObject.GetComponent<NewRoadGenerator>().GenerateRoads();
         gameObject.GetComponent<NewBorderGenerator>().GenerateBorder();
         gameObject.GetComponent<NewBorderGenerator>().GenerateTires();
-        GameObject.Find("HouseGenerator").GetComponent<NewHousePlacer>().PlaceHouses();
+        //GameObject.Find("HouseGenerator").GetComponent<NewHousePlacer>().PlaceHouses();
+        GameObject.Find("CargoGenerator").GetComponent<NewCargoPlacer>().PlaceCargo();
         SpawnWater();
     }
 

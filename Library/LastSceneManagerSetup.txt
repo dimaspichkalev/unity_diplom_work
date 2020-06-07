@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/ProceduralBuilding.unity
+- path: Assets/Scenes/Port.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
