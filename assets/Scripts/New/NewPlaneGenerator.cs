@@ -18,6 +18,7 @@ public class NewPlaneGenerator : MonoBehaviour
     public Material ground;
     public Material underground;
 
+    public GameObject waterPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +27,16 @@ public class NewPlaneGenerator : MonoBehaviour
         gameObject.GetComponent<NewRoadGenerator>().GenerateRoads();
         gameObject.GetComponent<NewBorderGenerator>().GenerateBorder();
         gameObject.GetComponent<NewBorderGenerator>().GenerateTires();
+        GameObject.Find("HouseGenerator").GetComponent<NewHousePlacer>().PlaceHouses();
+        SpawnWater();
     }
+
 
     void CreateShape()
     {
         if (portType == PortType.Любой)
         {
-            portType = (PortType)Random.Range(1, 2); ;
+            portType = (PortType)Random.Range(1, 2);
         }
 
         if (portType == PortType.Речной)
@@ -63,4 +67,13 @@ public class NewPlaneGenerator : MonoBehaviour
 
         }
     }
+
+    void SpawnWater()
+    {
+        GameObject waterHolder = new GameObject("Water");
+        waterHolder.transform.position = new Vector3(xSize / 2f, 0, zSize / 2f);
+        waterHolder.transform.localScale = new Vector3(30, 0, 30);
+        Instantiate(waterPrefab, waterHolder.transform);
+    }
+
 }

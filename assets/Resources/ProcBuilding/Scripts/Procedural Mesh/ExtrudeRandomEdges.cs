@@ -22,7 +22,8 @@ namespace ProBuilder.Examples
 		/// </summary>
 		void Start()
 		{
-			m_Mesh = ShapeGenerator.GeneratePlane(PivotLocation.Center, 1, 1, 0, 0, Axis.Up);
+            //m_Mesh = ShapeGenerator.GeneratePlane(PivotLocation.Center, 1, 1, 0, 0, Axis.Up);
+            m_Mesh = ShapeGenerator.GenerateCube(PivotLocation.Center, new Vector3(10, 5, 10));
 			m_Mesh.GetComponent<MeshRenderer>().sharedMaterial = BuiltinMaterials.defaultMaterial;
 			m_LastExtrudedFace = m_Mesh.faces[0];
 		}

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathCreator", "PathCreator.csproj", "{7E2BAAE5-A3CC-6CF5-D7A5-19BB1563FCCF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.ProBuilder.Examples", "Unity.ProBuilder.Examples.csproj", "{91C5BB1E-55C6-044A-46C3-B5E040BED232}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathCreatorEditor", "PathCreatorEditor.csproj", "{9392A1E7-EB02-6417-3DA8-C180CFAF0686}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{2AD6EB36-39A7-FDA4-F80A-24FFD228D99A}"
@@ -23,6 +25,10 @@ Global
 		{7E2BAAE5-A3CC-6CF5-D7A5-19BB1563FCCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E2BAAE5-A3CC-6CF5-D7A5-19BB1563FCCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E2BAAE5-A3CC-6CF5-D7A5-19BB1563FCCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91C5BB1E-55C6-044A-46C3-B5E040BED232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91C5BB1E-55C6-044A-46C3-B5E040BED232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91C5BB1E-55C6-044A-46C3-B5E040BED232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91C5BB1E-55C6-044A-46C3-B5E040BED232}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9392A1E7-EB02-6417-3DA8-C180CFAF0686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9392A1E7-EB02-6417-3DA8-C180CFAF0686}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9392A1E7-EB02-6417-3DA8-C180CFAF0686}.Release|Any CPU.ActiveCfg = Release|Any CPU

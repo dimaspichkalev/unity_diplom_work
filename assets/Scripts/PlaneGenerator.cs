@@ -14,16 +14,19 @@ public class PlaneGenerator : MonoBehaviour
 
     public int xSize;
     public int zSize;
-    public string portType;
-    public Material material;
+    public enum PortType
+    {
+        Любой, Речной, Морской
+    }
+    public PortType portType;
     public bool active = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        xSize = StaticValue.xSize;
-        zSize = StaticValue.zSize;
-        portType = StaticValue.portType;
+        //xSize = StaticValue.xSize;
+        //zSize = StaticValue.zSize;
+        //portType = StaticValue.portType;
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
@@ -41,20 +44,20 @@ public class PlaneGenerator : MonoBehaviour
     void CreateShape()
     {
         Random random = new Random();
-        string[] list = new string[] { "Речной", "Морской"};
+        string[] list = new string[] { "Речной", "Морской" };
         int index;
 
-        if (portType == "Любой")
+        if (portType == PortType.Любой)
         {
             index = Random.Range(0, list.Length);
-            portType = list[index];
+            portType = (PortType)Random.Range(1, 2); ;
         }
 
-        if (portType == "Речной")
+        if (portType == PortType.Речной)
         {
             CreateShapeBySize();
         }
-        else if (portType == "Морской")
+        else if (portType == PortType.Морской)
         {
             Vector2[] vertices2D = new Vector2[] {
                 new Vector2(0,0),
@@ -66,6 +69,18 @@ public class PlaneGenerator : MonoBehaviour
                 new Vector2(200,250),
                 new Vector2(200,0),
             };
+
+            /*          
+            0, 0, 0
+            0, 0, 75
+            150, 0, 75
+            150, 0, 175
+            0, 0, 175
+            0, 0, 250
+            200, 0, 250
+            200, 0, 0
+             *          */
+
             // Use the triangulator to get indices for creating triangles
             Triangulator tr = new Triangulator(vertices2D);
             triangles = tr.Triangulate();
@@ -77,7 +92,7 @@ public class PlaneGenerator : MonoBehaviour
             for (int i = 0; i < vertices.Length; i++)
             {
                 vertices[i] = new Vector3(vertices2D[i].x, 0, vertices2D[i].y);
-                uv[i] = new Vector2(vertices2D[i].x / (float)50, vertices2D[i].y / (float)40);
+                uv[i] = new Vector2(vertices2D[i].x / 50.0f, vertices2D[i].y / 40.0f);
 
             }
         }

@@ -558,3 +558,10 @@ F:\Dima\Unity\unity_diplom_work\obj\Debug\Assembly-CSharp.csproj.CoreCompileInpu
 F:\Dima\Unity\unity_diplom_work\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 F:\Dima\Unity\unity_diplom_work\obj\Debug\Assembly-CSharp.dll
 F:\Dima\Unity\unity_diplom_work\obj\Debug\Assembly-CSharp.pdb
+F:\Dima\Unity\unity_diplom_work\Temp\bin\Debug\Unity.ProBuilder.dll
+F:\Dima\Unity\unity_diplom_work\Temp\bin\Debug\Unity.ProBuilder.Poly2Tri.dll
+F:\Dima\Unity\unity_diplom_work\Temp\bin\Debug\Unity.ProBuilder.KdTree.dll
+F:\Dima\Unity\unity_diplom_work\Temp\bin\Debug\Unity.ProBuilder.Examples.pdb
+F:\Dima\Unity\unity_diplom_work\Temp\bin\Debug\Unity.ProBuilder.pdb
+F:\Dima\Unity\unity_diplom_work\Temp\bin\Debug\Unity.ProBuilder.Poly2Tri.pdb
+F:\Dima\Unity\unity_diplom_work\Temp\bin\Debug\Unity.ProBuilder.KdTree.pdb

@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\PathCreator\Examples\Scripts\Editor\PathSceneToolEditor.cs" />
-    <Compile Include="Assets\Resourses\ProcBuilding\Scripts\Editor\ProGenEditor.cs" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>F:/Dima/Unity/unity_diplom_work/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
@@ -664,6 +663,10 @@
     <ProjectReference Include="PathCreator.csproj">
       <Project>{7E2BAAE5-A3CC-6CF5-D7A5-19BB1563FCCF}</Project>
       <Name>PathCreator</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.ProBuilder.Examples.csproj">
+      <Project>{91C5BB1E-55C6-044A-46C3-B5E040BED232}</Project>
+      <Name>Unity.ProBuilder.Examples</Name>
     </ProjectReference>
     <ProjectReference Include="PathCreatorEditor.csproj">
       <Project>{9392A1E7-EB02-6417-3DA8-C180CFAF0686}</Project>

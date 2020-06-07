@@ -8,15 +8,14 @@ namespace ProBuilder.Examples
 	public class CreatePolyShape
 	{
 
-        public static void CreatePortPlane(Vector3[] points, Material ground, Material underground)
+        public static void CreatePortPlane(Vector3[] points, Material ground, Material underground, float height)
 		{
             ProBuilderMesh m_Mesh;
-            float m_Height = 2f;
             bool m_FlipNormals = false;
             var go = new GameObject("Port Plane");
 			m_Mesh = go.gameObject.AddComponent<ProBuilderMesh>();
 
-            m_Mesh.CreateShapeFromPolygon(points, m_Height, m_FlipNormals);
+            m_Mesh.CreateShapeFromPolygon(points, height, m_FlipNormals);
             m_Mesh.SetMaterial(new Face[] {m_Mesh.faces[1]}, ground);
 
             Face[] otherFaces = new Face[m_Mesh.faceCount - 2];

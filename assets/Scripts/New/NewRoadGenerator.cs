@@ -15,9 +15,11 @@ public class NewRoadGenerator : MonoBehaviour
     public NewPlaneGenerator planeGenerator;
     int numroads;
     int currentroad = 0;
+    int widthSystem = 45;
     MeshRenderer meshRenderer;
     MeshFilter meshFilter;
     Mesh mesh;
+    public List<Vector3[]> freeZonesList = new List<Vector3[]>();
 
 
     public void GenerateRoads()
@@ -25,7 +27,7 @@ public class NewRoadGenerator : MonoBehaviour
         if (planeGenerator.active)
         {
             Clear();
-            numroads = planeGenerator.zSize / 30;
+            numroads = planeGenerator.zSize / widthSystem;
             currentroad = 0;
             for (int i = 0; i < numroads; i++)
             {
@@ -35,6 +37,7 @@ public class NewRoadGenerator : MonoBehaviour
                 CreateAutoRoads(pathList[4]);
                 currentroad += 1;
             }
+            CreateFreeZonesMesh();
         }
     }
 
@@ -77,34 +80,53 @@ public class NewRoadGenerator : MonoBehaviour
 
         Vector3[] railPoints_1 = new Vector3[]
             {
+                    //new Vector3(5, 0, 0),
+                    //new Vector3(10, 0, maxVector.z - 10 - currentroad * widthSystem),
+                    //new Vector3(25, 0, maxVector.z - 5 - currentroad * widthSystem),
+                    //new Vector3(maxVector.x * 0.7f, 0, maxVector.z - 5 - currentroad * widthSystem),
+                    //new Vector3(maxVector.x * 0.9f, 0, maxVector.z - 10 - currentroad * widthSystem),
+                    //new Vector3(maxVector.x - 5, 0, 0),
                     new Vector3(5, 0, 0),
-                    new Vector3(10, 0, maxVector.z - 10 - currentroad * 30),
-                    new Vector3(25, 0, maxVector.z - 5 - currentroad * 30),
-                    new Vector3(maxVector.x * 0.7f, 0, maxVector.z - 5 - currentroad * 30),
-                    new Vector3(maxVector.x * 0.9f, 0, maxVector.z - 10 - currentroad * 30),
+                    new Vector3(5, 0, maxVector.z - 45 - currentroad * widthSystem),
+                    new Vector3(6, 0, maxVector.z - 22.5f - currentroad * widthSystem),
+                    new Vector3(12.5f, 0, maxVector.z - 12.5f - currentroad * widthSystem),
+                    new Vector3(19, 0, maxVector.z - 10 - currentroad * widthSystem),
+                    new Vector3(21.5f, 0, maxVector.z - 10 - currentroad * widthSystem),
+
+                    new Vector3(maxVector.x - 21.5f, 0, maxVector.z - 10 - currentroad * widthSystem),
+                    new Vector3(maxVector.x - 19, 0, maxVector.z - 10 - currentroad * widthSystem),
+                    new Vector3(maxVector.x - 12.5f, 0, maxVector.z - 12.5f - currentroad * widthSystem),
+                    new Vector3(maxVector.x - 6, 0, maxVector.z - 22.5f - currentroad * widthSystem),
+                    new Vector3(maxVector.x - 5, 0, maxVector.z - 45 - currentroad * widthSystem),
                     new Vector3(maxVector.x - 5, 0, 0),
             };
         BezierPath bezierPathRail_1 = new BezierPath(railPoints_1, false, PathSpace.xz);
-        bezierPathRail_1.AutoControlLength = 0.15f;
-        VertexPath railRoadPath_1 = new VertexPath(bezierPathRail_1, transform, 5f, 1);
+        bezierPathRail_1.AutoControlLength = 0.3f;
+        VertexPath railRoadPath_1 = new VertexPath(bezierPathRail_1, transform, 2.5f, 1);
 
         Vector3[] railPoints_2 = new Vector3[]
          {
                 railPoints_1[0] + new Vector3(5f, 0, 0),
-                railPoints_1[1] + new Vector3(5f, 0, -5f),
-                railPoints_1[2] + new Vector3(0, 0, -5f),
-                railPoints_1[3] + new Vector3(0, 0, -5f),
-                railPoints_1[4] + new Vector3(-5f, 0, -5f),
-                railPoints_1[5] + new Vector3(-5f, 0, 0),
+                railPoints_1[1] + new Vector3(5f, 0, 0),
+                railPoints_1[2] + new Vector3(5f, 0, -5f),
+                railPoints_1[3] + new Vector3(5f, 0, -5f),
+                railPoints_1[4] + new Vector3(5f, 0, -5f),
+                railPoints_1[5] + new Vector3(5f, 0, -5f),
+                railPoints_1[6] + new Vector3(-5f, 0, -5f),
+                railPoints_1[7] + new Vector3(-5f, 0, -5f),
+                railPoints_1[8] + new Vector3(-5f, 0, -5f),
+                railPoints_1[9] + new Vector3(-5f, 0, -5f),
+                railPoints_1[10] + new Vector3(-5f, 0, 0),
+                railPoints_1[11] + new Vector3(-5f, 0, 0),
          };
         BezierPath bezierPathRail_2 = new BezierPath(railPoints_2, false, PathSpace.xz);
-        bezierPathRail_2.AutoControlLength = 0.15f;
-        VertexPath railRoadPath_2 = new VertexPath(bezierPathRail_2, transform, 5f, 1);
+        bezierPathRail_2.AutoControlLength = 0.3f;
+        VertexPath railRoadPath_2 = new VertexPath(bezierPathRail_2, transform, 2.5f, 1);
 
         Vector3[] craneRailPoints1 = new Vector3[]
             {
-                    new Vector3(railPoints_1[2].x, 0, railPoints_1[2].z + 2.5f),
-                    new Vector3(railPoints_1[3].x, 0, railPoints_1[2].z + 2.5f),
+                    new Vector3(railPoints_1[5].x + 5f, 0, railPoints_1[5].z + 2.5f),
+                    new Vector3(railPoints_1[6].x - 5f, 0, railPoints_1[5].z + 2.5f),
             };
         BezierPath bezierPathCrane1 = new BezierPath(craneRailPoints1, false, PathSpace.xz);
         bezierPathCrane1.AutoControlLength = 0.01f;
@@ -112,8 +134,8 @@ public class NewRoadGenerator : MonoBehaviour
 
         Vector3[] craneRailPoints2 = new Vector3[]
             {
-                    new Vector3(railPoints_2[2].x, 0, railPoints_2[2].z - 2.5f),
-                    new Vector3(railPoints_2[3].x, 0, railPoints_2[2].z - 2.5f),
+                    new Vector3(railPoints_2[5].x, 0, railPoints_2[5].z - 2.5f),
+                    new Vector3(railPoints_2[6].x, 0, railPoints_2[5].z - 2.5f),
             };
         BezierPath bezierPathCrane2 = new BezierPath(craneRailPoints2, false, PathSpace.xz);
         bezierPathCrane2.AutoControlLength = 0.01f;
@@ -122,22 +144,46 @@ public class NewRoadGenerator : MonoBehaviour
         Vector3[] autoRoadPoints = new Vector3[]
             {
                     new Vector3(10, 0, 0),
-                    new Vector3(15, 0, maxVector.z - 27.5f - currentroad * 30),
-                    new Vector3(18.5f, 0, maxVector.z - 21 - currentroad * 30),
-                    new Vector3(25, 0, maxVector.z - 17.5f - currentroad * 30),
-                    new Vector3(maxVector.x * 0.75f, 0, maxVector.z - 17.5f - currentroad * 30),
-                    new Vector3(maxVector.x * 0.815f, 0, maxVector.z - 21 - currentroad * 30),
-                    new Vector3(maxVector.x * 0.85f, 0, maxVector.z - 27.5f - currentroad * 30),
+                    new Vector3(15, 0, maxVector.z - 27.5f - currentroad * widthSystem),
+                    new Vector3(18.5f, 0, maxVector.z - 21 - currentroad * widthSystem),
+                    new Vector3(25, 0, maxVector.z - 17.5f - currentroad * widthSystem),
+                    new Vector3(maxVector.x * 0.75f, 0, maxVector.z - 17.5f - currentroad * widthSystem),
+                    new Vector3(maxVector.x * 0.815f, 0, maxVector.z - 21 - currentroad * widthSystem),
+                    new Vector3(maxVector.x * 0.85f, 0, maxVector.z - 27.5f - currentroad * widthSystem),
                     new Vector3(maxVector.x * 0.9f, 0, 0),
             };
         BezierPath bezierAuto = new BezierPath(autoRoadPoints, false, PathSpace.xz);
         bezierAuto.AutoControlLength = 0.15f;
         VertexPath autoRoadPath = new VertexPath(bezierAuto, transform, 2.5f, 1);
 
+        Vector3[] freeSpacePoints = new Vector3[]
+        {
+            new Vector3(autoRoadPoints[3].x, 0, autoRoadPoints[3].z - 5),
+            new Vector3(autoRoadPoints[4].x, 0, autoRoadPoints[4].z - 5),
+            new Vector3(autoRoadPoints[4].x, 0, autoRoadPoints[4].z - 27.5f),
+            new Vector3(autoRoadPoints[3].x, 0, autoRoadPoints[3].z - 27.5f)
+        };
+        freeZonesList.Add(freeSpacePoints);
 
         return new VertexPath[5] { railRoadPath_1, railRoadPath_2, craneRailRoadPath1, craneRailRoadPath2, autoRoadPath };
     }
 
+
+    void CreateFreeZonesMesh()
+    {
+        int i = 0;
+        foreach (Vector3[] zone in freeZonesList)
+        {
+            BezierPath b_path = new BezierPath(zone, false, PathSpace.xz);
+            b_path.AutoControlLength = 0.01f;
+            VertexPath v_path = new VertexPath(b_path, transform, 45, 1);
+            Material roadMaterial = Resources.Load("Materials/Tire9_Material", typeof(Material)) as Material;
+            Material undersideMaterial = Resources.Load("Materials/Road Underside", typeof(Material)) as Material;
+            AssignMeshComponents("Free Zone Road" + i++);
+            AssignMaterials(roadMaterial, undersideMaterial, 1);
+            CreateRoadMesh(v_path, 1, 0);
+        }
+    }
 
     void CreateRoadMesh(VertexPath vpath, float roadWidth, float thickness)
     {
