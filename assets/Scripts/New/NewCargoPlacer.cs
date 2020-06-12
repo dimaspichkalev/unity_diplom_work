@@ -16,13 +16,10 @@ public class NewCargoPlacer : MonoBehaviour
 
     float portHeight = 2;
 
-    public void PlaceCargo()
+    public void PlaceCargo(Vector3[] zone, float height)
     {
-        portHeight = GameObject.Find("Generator").GetComponent<NewPlaneGenerator>().height;
-        foreach (Vector3[] zone in roadGen.freeZonesList)
-        {
-            PlaceCargoInZone(zone);
-        }
+        portHeight = height;
+        PlaceCargoInZone(zone);
     }
 
     //void Start()

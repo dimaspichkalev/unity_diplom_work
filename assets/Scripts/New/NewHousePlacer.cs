@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class NewHousePlacer : MonoBehaviour
 {
-    public NewRoadGenerator roadGen;
     public ProcBuilding proc;
 
-    public void PlaceHouses()
+    public void PlaceHouses(Vector3[] zone)
     {
-        foreach (Vector3[] zone in roadGen.freeZonesList)
-        {
-            proc.PlaceObjectsInZone(zone);
-        }
+        proc.PlaceObjectsInZone(zone);
     }
 }

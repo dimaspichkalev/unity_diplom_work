@@ -77,11 +77,17 @@
     <Compile Include="Assets\Scripts\GenerationLogic.cs" />
     <Compile Include="Assets\Scripts\InsidePort.cs" />
     <Compile Include="Assets\Scripts\MyGUI.cs" />
+    <Compile Include="Assets\Scripts\New\MarkupTemplate\AutoMarkupElement.cs" />
+    <Compile Include="Assets\Scripts\New\MarkupTemplate\CraneRailElement.cs" />
+    <Compile Include="Assets\Scripts\New\MarkupTemplate\FreeSpaceMarkupElement.cs" />
+    <Compile Include="Assets\Scripts\New\MarkupTemplate\MarkupTemplate.cs" />
     <Compile Include="Assets\Scripts\New\NewBorderGenerator.cs" />
     <Compile Include="Assets\Scripts\New\NewCargoPlacer.cs" />
     <Compile Include="Assets\Scripts\New\NewHousePlacer.cs" />
     <Compile Include="Assets\Scripts\New\NewPlaneGenerator.cs" />
+    <Compile Include="Assets\Scripts\New\NewRiverRoadTemplateGenerator.cs" />
     <Compile Include="Assets\Scripts\New\NewRoadGenerator.cs" />
+    <Compile Include="Assets\Scripts\New\NewSeaRoadTemplateGenerator.cs" />
     <Compile Include="Assets\Scripts\New\NewWaterGenerator.cs" />
     <Compile Include="Assets\Scripts\Placement\GridPlacement.cs" />
     <Compile Include="Assets\Scripts\Placement\InactiveObjectGenerator.cs" />

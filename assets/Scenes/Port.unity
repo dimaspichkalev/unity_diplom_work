@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -96,7 +96,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 311256d4dac175e49a0fcc96d813e997,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -189,8 +190,6 @@ MonoBehaviour:
   - {fileID: 100000, guid: a5c1cc5f471b914449d2e3ea62b41930, type: 3}
   - {fileID: 100000, guid: 94fb01e02906f2e4c88d55b30d261f6f, type: 3}
   - {fileID: 100000, guid: 95f6a3364dfa15d43a56bb1e5913f706, type: 3}
-  - {fileID: 8462307127447850598, guid: 065ea7c4854dc6e4881f64d015135188, type: 3}
-  - {fileID: 100016, guid: 8417396e755ab5244a0c8d190b8737cd, type: 3}
   - {fileID: 100000, guid: 77863dd382141614182d3b21e5c0fcbc, type: 3}
   - {fileID: 100014, guid: f728003af152f1b449d7fee4a7b8a84e, type: 3}
   - {fileID: 100000, guid: a34d40157015aab4f93d7890a6420388, type: 3}
@@ -452,10 +451,18 @@ MonoBehaviour:
   xSize: 200
   zSize: 100
   height: 2
-  portType: 1
+  zLeftPartSize: 0
+  zRightPartSize: 0
+  portType: 2
   active: 0
   ground: {fileID: 2100000, guid: 32fcb06d484f0a640a5517993d4b8cd0, type: 2}
   underground: {fileID: 2100000, guid: 6bfb8704797bf3e41b139bc349c4a012, type: 2}
+  riverMarkupTemplate: {fileID: 11400000, guid: 4c24ff55c82527543a89321834ec1eb2,
+    type: 2}
+  seaLeftPartMarkupTemplate: {fileID: 11400000, guid: 65221a5fa369fbe469b4c2acfc95590d,
+    type: 2}
+  seaRightPartMarkupTemplate: {fileID: 11400000, guid: 1a10d48c87bb0b64685a6480951073ca,
+    type: 2}
   waterPrefab: {fileID: 100000, guid: bcae914220acd4907840a029bb9d9aec, type: 3}
 --- !u!33 &1953053688
 MeshFilter:
@@ -580,5 +587,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6bae3774a1d963448b01e893edee8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roadGen: {fileID: 1953053690}
   proc: {fileID: 2086223074}

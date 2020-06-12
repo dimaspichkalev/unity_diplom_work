@@ -21,7 +21,6 @@ public class NewRoadGenerator : MonoBehaviour
     Mesh mesh;
     public List<Vector3[]> freeZonesList = new List<Vector3[]>();
 
-
     public void GenerateRoads()
     {
         if (planeGenerator.active)
@@ -32,7 +31,7 @@ public class NewRoadGenerator : MonoBehaviour
             for (int i = 0; i < numroads; i++)
             {
                 VertexPath[] pathList = CreateAllRoadPoints();
-                CreateRails(pathList[0], pathList[1]);
+                CreateRails(new VertexPath[2] { pathList[0], pathList[1] });
                 CreateCraneRails(pathList[2], pathList[3]);
                 CreateAutoRoads(pathList[4]);
                 currentroad += 1;
@@ -41,16 +40,17 @@ public class NewRoadGenerator : MonoBehaviour
         }
     }
 
-    void CreateRails(VertexPath railPath1, VertexPath railPath2)
+    void CreateRails(VertexPath[] railPathes)
     {
         Material roadMaterial = Resources.Load("Materials/Rails", typeof(Material)) as Material;
         Material undersideMaterial = Resources.Load("Materials/Road Underside", typeof(Material)) as Material;
-        AssignMeshComponents("Rail First");
-        AssignMaterials(roadMaterial, undersideMaterial, 75);
-        CreateRoadMesh(railPath1, 2f, 0.15f);
-        AssignMeshComponents("Rail Second");
-        AssignMaterials(roadMaterial, undersideMaterial, 75);
-        CreateRoadMesh(railPath2, 2f, 0.15f);
+        int i = 0;
+        foreach (VertexPath vertexPath in railPathes)
+        {
+            AssignMeshComponents("Rail " + i.ToString());
+            AssignMaterials(roadMaterial, undersideMaterial, 75);
+            CreateRoadMesh(vertexPath, 2f, 0.15f);
+        }
     }
 
     void CreateCraneRails(VertexPath railPath1, VertexPath railPath2)
@@ -282,11 +282,13 @@ public class NewRoadGenerator : MonoBehaviour
     void AssignMeshComponents(string meshName)
     {
 
-        meshHolder = GameObject.Find("Road Mesh Holder " + meshName + " " + currentroad.ToString());
-        if (meshHolder == null)
-        {
-            meshHolder = new GameObject("Road Mesh Holder " + meshName + " " + currentroad.ToString());
-        }
+        //meshHolder = GameObject.Find("Road Mesh Holder " + meshName + " " + currentroad.ToString());
+        //if (meshHolder == null)
+        //{
+        //    meshHolder = new GameObject("Road Mesh Holder " + meshName + " " + currentroad.ToString());
+        //}
+
+        meshHolder = new GameObject("Road Mesh Holder " + meshName);
 
         meshHolder.transform.rotation = Quaternion.identity;
         meshHolder.transform.position = (meshName == "Rail") ? new Vector3(0, 0.2f, 0) : new Vector3(0, 0.1f, 0) + new Vector3(0, planeGenerator.height, 0);
@@ -326,4 +328,77 @@ public class NewRoadGenerator : MonoBehaviour
         }
     }
 
+    public void GenerateFromTemplate(MarkupTemplate markupTemplate)
+    {
+        float zLevel = planeGenerator.zSize;
+        float xMax = planeGenerator.xSize;
+        foreach (var element in markupTemplate.roadsList)
+        {
+            if (element is CraneRailElement)
+            {
+                CraneRailElement elem = (CraneRailElement)element;
+                VertexPath[] cranePathes = NewRiverRoadTemplateGenerator.GenerateCranePoints(zLevel, xMax, elem.deadEndLeft, elem.deadEndRight, transform); 
+                CreateCraneRails(cranePathes[0], cranePathes[1]);
+                if (elem.howManyRails > 0)
+                {
+                    VertexPath[] railsPathes = NewRiverRoadTemplateGenerator.GenerateRailsPoints(zLevel - 5, zLevel - 15, xMax, elem.howManyRails, transform);
+                    CreateRails(railsPathes);
+                }
+                zLevel -= 15;
+
+            }
+            else if (element is AutoMarkupElement)
+            {
+                VertexPath autoPath = NewRiverRoadTemplateGenerator.GenerateAutoPoints(zLevel, xMax, transform);
+                zLevel -= 10;
+                CreateAutoRoads(autoPath);
+            }
+            else if (element is FreeSpaceMarkupElement)
+            {
+                FreeSpaceMarkupElement elem = (FreeSpaceMarkupElement)element;
+                int startOffset = 2;
+                Vector3[] freeZone = NewRiverRoadTemplateGenerator.GetFreeZonePoints(zLevel, xMax, startOffset, elem.width);
+                freeZonesList.Add(freeZone);
+                zLevel -= elem.width + startOffset;
+            }
+        }
+        CreateFreeZonesMesh();
+    }
+
+
+    public void GenerateFromSeaTemplate(MarkupTemplate markupTemplate, float zLevel, float zMiddleOfPart)
+    {
+        float xMax = planeGenerator.xSize;
+        foreach (var element in markupTemplate.roadsList)
+        {
+            if (element is CraneRailElement)
+            {
+                CraneRailElement elem = (CraneRailElement)element;
+                VertexPath[] cranePathes = NewSeaRoadTemplateGenerator.GenerateCranePoints(zLevel, xMax, elem.deadEndLeft, elem.deadEndRight, transform);
+                CreateCraneRails(cranePathes[0], cranePathes[1]);
+                if (elem.howManyRails > 0)
+                {
+                    VertexPath[] railsPathes = NewSeaRoadTemplateGenerator.GenerateRailsPoints(zLevel + 5, zLevel + 15, xMax, zMiddleOfPart, elem.howManyRails, transform);
+                    CreateRails(railsPathes);
+                }
+                zLevel += 15;
+
+            }
+            else if (element is AutoMarkupElement)
+            {
+                VertexPath autoPath = NewSeaRoadTemplateGenerator.GenerateAutoPoints(zLevel, xMax, planeGenerator.zLeftPartSize + NewPlaneGenerator.seaLadleZsize + planeGenerator.zRightPartSize, transform);
+                zLevel += 10;
+                CreateAutoRoads(autoPath);
+            }
+            else if (element is FreeSpaceMarkupElement)
+            {
+                FreeSpaceMarkupElement elem = (FreeSpaceMarkupElement)element;
+                int startOffset = 2;
+                Vector3[] freeZone = NewSeaRoadTemplateGenerator.GetFreeZonePoints(zLevel, xMax, startOffset, elem.width);
+                freeZonesList.Add(freeZone);
+                zLevel += elem.width + startOffset;
+            }
+        }
+        CreateFreeZonesMesh();
+    }
 }

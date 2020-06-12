@@ -12,24 +12,41 @@ public class NewBorderGenerator : MonoBehaviour
     public float spacing = 3;
 
     Vector3[] borderPoints;
+    Vector3[] tirePoints;
 
     public NewPlaneGenerator planeGenerator;
 
     const float minSpacing = .1f;
 
-    public void GenerateBorder()
+    public void GenerateBorder(NewPlaneGenerator.PortType portType)
     {
         if (planeGenerator.active && prefab != null && holder != null)
         {
             DestroyObjects();
-
-            borderPoints = new Vector3[]
+            if (portType == NewPlaneGenerator.PortType.Речной)
             {
-                new Vector3(0.5f, 0, 0.5f),
-                new Vector3(0.5f, 0, planeGenerator.zSize - 0.5f),
-                new Vector3(planeGenerator.xSize - 0.5f, 0, planeGenerator.zSize - 0.5f),
-                new Vector3(planeGenerator.xSize - 0.5f, 0, 0),
-            };
+                borderPoints = new Vector3[]
+                {
+                    new Vector3(0.5f, 0, 0.5f),
+                    new Vector3(0.5f, 0, planeGenerator.zSize - 0.5f),
+                    new Vector3(planeGenerator.xSize - 0.5f, 0, planeGenerator.zSize - 0.5f),
+                    new Vector3(planeGenerator.xSize - 0.5f, 0, 0.5f),
+                };
+            }
+            else if (portType == NewPlaneGenerator.PortType.Морской)
+            {
+                borderPoints = new Vector3[]
+                {
+                    new Vector3(planeGenerator.xSize - 0.5f, 0, 0.5f),
+                    new Vector3(0.5f, 0, 0.5f),
+                    new Vector3(0.5f, 0, planeGenerator.zLeftPartSize - 0.5f),
+                    new Vector3(planeGenerator.xSize + 0.5f, 0, planeGenerator.zLeftPartSize - 0.5f),
+                    new Vector3(planeGenerator.xSize + 0.5f, 0, planeGenerator.zLeftPartSize + NewPlaneGenerator.seaLadleZsize + 0.5f),
+                    new Vector3(0.5f, 0, planeGenerator.zLeftPartSize + NewPlaneGenerator.seaLadleZsize + 0.5f),
+                    new Vector3(0.5f, 0, planeGenerator.zLeftPartSize + NewPlaneGenerator.seaLadleZsize + planeGenerator.zRightPartSize - 0.5f),
+                    new Vector3(planeGenerator.xSize - 0.5f, 0, planeGenerator.zLeftPartSize + NewPlaneGenerator.seaLadleZsize + planeGenerator.zRightPartSize - 0.5f),
+                };
+            }
 
             BezierPath border_path = new BezierPath(borderPoints, false, PathSpace.xz);
             border_path.AutoControlLength = 0.01f;
@@ -48,19 +65,35 @@ public class NewBorderGenerator : MonoBehaviour
         }
     }
 
-    public void GenerateTires()
+    public void GenerateTires(NewPlaneGenerator.PortType portType)
     {
         if (planeGenerator.active && prefab != null && holder != null)
         {
             //DestroyObjects();
-
-            Vector3[] tirePoints = new Vector3[]
+            if (portType == NewPlaneGenerator.PortType.Речной)
             {
-                new Vector3(0.25f, 0, 0.25f),
-                new Vector3(0.25f, 0, planeGenerator.zSize - 0.25f),
-                new Vector3(planeGenerator.xSize - 0.25f, 0, planeGenerator.zSize - 0.25f),
-                new Vector3(planeGenerator.xSize - 0.25f, 0, 0),
-            };
+                tirePoints = new Vector3[]
+                {
+                    new Vector3(0.25f, 0, 0.25f),
+                    new Vector3(0.25f, 0, planeGenerator.zSize - 0.25f),
+                    new Vector3(planeGenerator.xSize - 0.25f, 0, planeGenerator.zSize - 0.25f),
+                    new Vector3(planeGenerator.xSize - 0.25f, 0, 0),
+                };
+            }
+            else if (portType == NewPlaneGenerator.PortType.Морской)
+            {
+                tirePoints = new Vector3[]
+                {
+                    new Vector3(planeGenerator.xSize - 0.25f, 0, 0.25f),
+                    new Vector3(0.25f, 0, 0.25f),
+                    new Vector3(0.25f, 0, planeGenerator.zLeftPartSize - 0.25f),
+                    new Vector3(planeGenerator.xSize - 0.25f, 0, planeGenerator.zLeftPartSize + 0.25f),
+                    new Vector3(planeGenerator.xSize - 0.25f, 0, planeGenerator.zLeftPartSize + NewPlaneGenerator.seaLadleZsize - 0.25f),
+                    new Vector3(0.25f, 0, planeGenerator.zLeftPartSize + NewPlaneGenerator.seaLadleZsize + 0.25f),
+                    new Vector3(0.25f, 0, planeGenerator.zLeftPartSize + NewPlaneGenerator.seaLadleZsize + planeGenerator.zRightPartSize - 0.25f),
+                    new Vector3(planeGenerator.xSize - 0.25f, 0, planeGenerator.zLeftPartSize + NewPlaneGenerator.seaLadleZsize + planeGenerator.zRightPartSize - 0.25f),
+                };
+            }
 
             BezierPath tire_path = new BezierPath(tirePoints, false, PathSpace.xz);
             tire_path.AutoControlLength = 0.01f;

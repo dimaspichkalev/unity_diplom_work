@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063dbf5ee8dc85047bd27eb25a6d5563, type: 3}
+  m_Name: SeaRightPartTemplate
+  m_EditorClassIdentifier: 
+  Name: 
+  roadsList:
+  - {fileID: 11400000, guid: 31756b5f3bb419e42bad58bbd201afd8, type: 2}
+  - {fileID: 11400000, guid: 31756b5f3bb419e42bad58bbd201afd8, type: 2}
+  - {fileID: 11400000, guid: 8e850697bd2d49d48bda68607925799d, type: 2}
+  - {fileID: 11400000, guid: 8e850697bd2d49d48bda68607925799d, type: 2}
